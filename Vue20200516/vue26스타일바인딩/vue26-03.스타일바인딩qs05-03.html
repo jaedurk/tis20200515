@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Sample</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- CSS import -->
+    <link rel="stylesheet" href="../css/reset.css">
+
+    <!-- vue 스크립트 플러그인 임포트   -->
+    
+    
+
+    <style>
+        div.button {
+            width: 100px;
+            height: 50px;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <xmp>
+        mouseover 와 mouseout 이벤트를 사용하는 것을 복습한다.
+            https://javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave
+
+        javascript 에서의 style 속성 설정 방식을 학습한다.
+        jQuery 에서의 style 속성 설정 방식을 학습한다.
+        vue.js 에서의 style 속성 설정 방식을 학습한다.
+            style 속성으로 설정할 값은 data 옵션에 저장.
+            style 속성 설정은 v-bind:style 디렉티브를 사용하여 작성.
+                single style binding:
+                    new Vue({
+                        data : {
+                            baseStyles: {
+                                fontWeight:'800',
+                                color: 'red'
+                            },
+                        }
+                    });
+                    <p v-bind:style="baseStyles">
+                        baseStyles and overrideStyles
+                    </p>
+
+                multi style binding:
+                    new Vue({
+                        data : {
+                            baseStyles: {
+                                fontWeight:'800',
+                                color: 'red'
+                            },
+                            overrideStyles: {
+                                color:'blue'
+                            },
+                        }
+                    });
+                    <p v-bind:style="[baseStyles, overrideStyles]">
+                        baseStyles and overrideStyles
+                    </p>
+
+
+        style 속성 설정시 주의 사항
+            javascript, jQuery, vue.js 모두 공통 사항
+            1. 명칭은 카멜 표기법 사용. 왜냐하면 자바스립트이기 때문. 케밥 표기법 vs 카멜 표기법
+                예시)
+                font-size ==> fontSize
+                backgroundColor ==> backgroundColor
+
+                document.getElementById("a").style.fontSize = "12pt";
+                document.getElementById("a").style.backgroundColor = "yellow";
+
+            2. 구분자는 세미콜론 대신 콤마 사용. 왜냐하면 자바스크립트 객체기이기 때문.
+                {
+                    background-color: yellow;
+                    font-size :  12pt;
+                }
+                ==>
+                {
+                    backgroundColor: "yellow",
+                    fontSize :  "12pt",
+                }
+
+
+        과제:
+        버튼 위로 mouseover 되면 배경색은 purple 로 글자색은 yellow 로 바꾸도록 style 을 설정하시오.
+        버튼 위에서 mouseout 되면 배경색을 aqua 로 글자색은 black 으로 바꾸도록 style 을 설정하시오.
+
+
+        1. 자바스크립를 사용하여 구현하여 본다.
+        2. Vue.js 를 사용하여 구현하여 본다.
+    </xmp>
+    <hr>
+
+    <div id="eljvs">
+        자바스크립를 사용하여 구현<br>
+        <div style=" width: 100px; height: 50px; border: 1px solid black; text-align: center; line-height: 50px;"
+            id="a" onmouseover="overEvent(this)" onmouseout="outEvent(this)">
+            테스트
+        </div>
+    </div>
+
+    <div id="eljqy">
+        jQuery를 사용하여 구현<br>
+        <div style=" width: 100px; height: 50px; border: 1px solid black; text-align: center; line-height: 50px;"  id="b">
+            테스트
+        </div>
+    </div>
+
+    <div id="elvue1">
+        Vue.js 를 사용한 style single 바인딩 구현<br>
+        <div id="c" v-bind:style="style1" v-on:mouseover="overEvent(this)" v-on:mouseout="outEvent(this)">
+            테스트
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!-- ex08_crud.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- CSS import -->
+    <link rel="stylesheet" href="../css/reset.css">
+    <style>
+        .strong{color:red; font-weight:bold; font-size:1.2em;}
+    </style>
+
+    <!-- vue 스크립트 플러그인 임포트   -->
+    
+    
+    
+    
+</head>
+<body>
+    <div id="app">
+        <!-- list 데이터를 table형태로 출력하고 power가 300이상인 사람은 글자색을 red로 bold스타일로 출력하세요. -->
+        <h1>Creat Read Update Delete</h1>
+        Name : <input type="text" ref="myinput" v-model="user.name">
+        <p></p>
+        Power : <input type="text" v-model="user.power">
+        <br>
+        <button @click="insert">Add</button>
+        <hr>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>POWER</th>
+                <th>CRUD</th>
+            </tr>
+            <tr v-for="(man, index) in list" :key="man.id" :class="{strong:man.power>=300}">
+                <td>{{man.id}}</td>
+                <td>{{man.name}}</td>
+                <td>{{man.power}}</td>
+                <td>
+                    <button @click="doDel(index)">Del</button>
+                    <button v-on:click="doUp(index)">Power Up</button>
+                    <button @click="doDown(index)">Power Down</button>
+                    <button @click="doEdit(index)">Edit</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+</body>
+</html>

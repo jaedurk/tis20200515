@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- CSS import -->
+    <link rel="stylesheet" href="../css/reset.css">
+
+    <!-- vue 스크립트 플러그인 임포트   -->
+    
+    
+    
+    
+
+    
+    
+    
+
+    
+
+</head>
+<body>
+    <xmp>
+        Vue 인스턴스 속성은 e dt mc^2 life cycel 이다.
+        Vue 인스턴스 data 속성을 학습한다.
+
+        data 속성은?
+            Object.defineProperty()
+            인스턴스가 생성될 때 data 에 정의된 속성들은 모두 getter, setter 변환 작업을 거친다.
+
+            Vue의 data 속성값이 변화할 때 자동으로 화면을 다시 그리게 되는데
+            인스턴스와 data 속성 사이에 watcher 프록시를 두어 처리한다.
+            data 속성의 변화가 감지되면 watcher 에서 화면을 다시 그리라는 신호를 보냄.
+
+            data 속성은 Vue 인스턴스가 관찰하는 View-Model에서 Model을 의미하며 변경 사항은 즉시 반영된다.
+            data 속성은 data 속성에 주어진 모든 속성들은 Vue 인스턴스 내부에서 직접 이용되지 않고 watcher 프록시를 두어 처리한다.
+
+        data 속성 직접 접근 방법
+            실행 후 크롬 개발자 도구 콘솔에서 테스트해보면
+            인스턴스명.name
+            인스턴스명.$data.name 같이 접근할 수 있다.
+            # 인스턴스 속성에 $식별자를 앞에 붙이고 있는데 이는 이름 충돌을 피하기 위해서다.
+
+        [참조]page 38,50
+    </xmp>
+    <hr>
+
+    <div class="container" id="app">
+        <h2 class="text-primary m-5">{{name}}</h2>
+    </div>
+
+</body>
+</html>
+

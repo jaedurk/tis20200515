@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Sample</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- CSS import -->
+    <link rel="stylesheet" href="../css/reset.css">
+
+    <!-- vue 스크립트 플러그인 임포트   -->
+    
+    
+    
+    
+
+</head>
+<body>
+    <xmp>
+        1부터 입력값 까지의 합계를 구하는 예제를 풀어 본다.
+
+        v-model 지시자와 computed 속성이 결합된
+    </xmp>
+    <hr>
+
+    <div id="app" class="col-md-6 offset-md-3">
+        <div id="exmaple">
+            <div class="form-group">
+                <label for="">누적 합 구하기</label>
+                <input type="text" class="form-control" v-model="num">
+                <br>입력된 합: <span style="color:crimson">{{sum}}</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+

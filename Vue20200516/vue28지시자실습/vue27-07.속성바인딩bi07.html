@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Sample</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- CSS import -->
+    <link rel="stylesheet" href="../css/reset.css">
+
+    <!-- vue 스크립트 플러그인 임포트   -->
+    
+    
+    
+    
+
+</head>
+<body>
+    <pre>
+
+        Vue에서 select 태그를 사용하는 방법을 익한다.
+    </pre>
+    <hr>
+
+    <div id="app" class="col-md-6 offset-md-3">
+        <div id="exmaple">
+            <div class="form-group">
+                <label for="">지역을 선택하세요</label>
+                <select class="form-control" name="regions" id="regions" v-model="sel" @change="onChange($event)">
+                    <option disabled selected>::선택하세요::</option>
+                    <option v-for="(val ,key, i ) in regions" v-bind:value="key">{{i}}:{{val}}</option>
+                </select>
+            </div>
+            <div id="result">{{sel}}</div>
+        </div>
+    </div>
+
+</body>
+</html>
+

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Sample</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- CSS import -->
+    <link rel="stylesheet" href="../css/reset.css">
+
+    <!-- vue 스크립트 플러그인 임포트   -->
+    
+    
+</head>
+
+<body>
+    <xmp>
+        vue.js 에서의 style 속성 설정 방식을 학습한다.
+        style 속성으로 설정할 값은 data 옵션에 저장.
+        style 속성 설정은 v-bind:style 디렉티브를 사용하여 작성.
+        single style binding:
+        new Vue({
+        data : {
+        baseStyles: {
+        fontWeight:'800',
+        color: 'red'
+        },
+        }
+        });
+        <p v-bind:style="baseStyles">
+            baseStyles and overrideStyles
+        </p>
+
+        multi style binding:
+        new Vue({
+        data : {
+        baseStyles: {
+        fontWeight:'800',
+        color: 'red'
+        },
+        overrideStyles: {
+        color:'blue'
+        },
+        }
+        });
+        <p v-bind:style="[baseStyles, overrideStyles]">
+            baseStyles and overrideStyles
+        </p>
+    </xmp>
+    <hr>
+
+    <div id="example1">
+        Vue.js 를 사용한 style single 바인딩 복습<br>
+        <button id="btn1" v-bind:style="myColor">버튼1</button>
+    </div>
+
+    <div id="example2">
+        Vue.js 를 사용한 style multi 바인딩 구현<br>
+        <button id="btn1" v-bind:style="[myColor,myLayout]">버튼1</button>
+    </div>
+
+    <div id="example3">
+        도전. Vue.js 를 사용한 style multi 바인딩 구현. mouseover 과 mouseout 이벤트 설정 <br>
+        <div id="d" v-bind:style="[style1,style2]" v-on:mouseover="overEvent(this)" v-on:mouseout="outEvent(this)">
+            테스트
+        </div>
+    </div>
+</body>
+
+</html>

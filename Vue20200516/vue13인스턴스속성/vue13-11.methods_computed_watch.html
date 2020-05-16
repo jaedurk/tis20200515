@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Template - Watch</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- CSS import -->
+    <link rel="stylesheet" href="../css/reset.css">
+
+    <style>
+        input {
+            width: 250px;
+        }
+        .warning{color:red; border:1px solid red;}
+        .err{color:blue;}
+    </style>
+
+    <!-- vue 스크립트 플러그인 임포트   -->
+    
+    
+    
+    
+
+    
+    
+    
+
+    
+
+</head>
+<body>
+    <xmp>
+        Vue Reactivity 에 대해서 학습한다.
+        Vue 인스턴스 속성에 대해서 학습한다. e dt mc^2 life cycele.
+        Vue 인스턴스 속성중에 data, methods, computed, watch 의 특성과 차이점을 학습한다.
+
+        Vue Reactivity
+          Vue의 데이터가 변화할 때 자동으로 화면을 다시 그리는 특성을 말한다.
+          인스턴스가 생성될 때 data 에 정의된 속성들은 모두 getter, setter 변환 작업을 거침
+          Vue Reactivity 설명 <-- Vue.js 공식 사이트
+
+
+          data 속성은?
+          Object.defineProperty()
+          인스턴스가 생성될 때 data 에 정의된 속성들은 모두 getter, setter 변환 작업을 거친다.
+
+          Vue의 data 속성값이 변화할 때 자동으로 화면을 다시 그리게 되는데
+          인스턴스와 data 속성 사이에 watcher 프록시를 두어 처리한다.
+          data 속성의 변화가 감지되면 watcher 에서 화면을 다시 그리라는 신호를 보냄.
+
+          data 속성은 Vue 인스턴스가 관찰하는 View-Model에서 Model을 의미하며 변경 사항은 즉시 반영된다.
+          data 속성은 data 속성에 주어진 모든 속성들은 Vue 인스턴스 내부에서 직접 이용되지 않고 watcher 프록시를 두어 처리한다.
+
+          주의사항:
+            data 속성의 값을 직접 바꾸면 안된다.
+            배열[i]="값" 형식으로 변경하면 rendering 되지 않음
+          해결방법
+            (1)Vue.set(object, key, value)를 이용해서 변경한다.
+            (2)this.$set(object, key, value)
+            (3)splice()함수를 사용하여 변경
+            (4)배열 사본을 만들어 수정한 뒤 재할당=>ES6 (spread 연산자)
+
+        methods 속성은?
+          수동 실행 + 이벤트처리
+
+        computed 속성은?
+          자동 실행 + 동기처리
+          computed 속성은 기존 값을 통해 새로운 값을 도출 할때 사용한다.
+          computed 에서 정의하는 함수는 반드시 값을 반환하도록 작성되어야 한다.
+          단시간 소요되는 동기 처리에 적합
+
+        watch 속성은?
+          자동 실행 + 비동기처리
+          watch 속성은 data 속성 값의 변화를 감지하여 자동으로 특정 로직을 수행한다.
+          computed 속성과 유사하지만 장시간 소요되는 비동기 처리에 적합
+
+        [참조] page 106, 109~111, 179
+    </xmp>
+    <hr>
+
+    <div id="app1">
+        정수 : <input type="text" v-model="num">
+        <h2> {{num}}의 2배는 : {{doubleNum}}</h2>
+        국어점수:
+        <input type="text" v-model="score" v-bind:class="info">
+        <!-- 범위에 해당하지 않는 값일때 err 클래스를 적용시키세요. -->
+        <!-- <h3 v-show="info.warning" v-bind:class="{err:info.warning}">점수는 0~100점 사이여야 해요.</h3> -->
+        <h3 v-show="info.warning" v-bind:class="warnMsg">점수는 0~100점 사이여야 해요.</h3>
+    </div>
+
+    <div id="app2">
+        메세지 : <input type="text" v-model="message">
+        <h2>메세지 : {{message}}</h2>
+        <h2 style="color:red">
+            Reverse Message : {{reverseMessage}}
+        </h2>
+    </div>
+</body>
+</html>
+
+

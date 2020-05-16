@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Sample</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- CSS import -->
+    <link rel="stylesheet" href="../css/reset.css">
+
+    <!-- vue 스크립트 플러그인 임포트   -->
+    
+    
+    
+    
+
+</head>
+
+<body>
+    <xmp>
+        Vue Reactivity의 동작 원리에 대해서 배운다.
+
+        Object.defineProperty() 메서드의 get, set 설정 방법을 학습한다.
+
+        F12 로 개발자 도구를 열고 console 창에 아래 순으로 입력한다.
+
+        1-1. vm1.$data.msg = "ccc" 입력 후 엔터. 값의 변화를 관찰한다.
+        1-2. vm1 입력 후 엔터.
+
+        2-1. vm2.msg = "aaa" 입력 후 엔터.
+        2-2. console.log( vm2.msg) 입력 후 엔터
+        2-3. vm2 입력 후 엔터.
+
+        [참조]page
+    </xmp>
+    <hr>
+
+    <h1>Vue Reactivity의 동작 원리 학습</h1>
+
+    <hr color="red">
+    <div id="app">
+        <h2>{{msg}}</h2>
+        <!--{{}} :출력-->
+    </div>
+
+    <hr color="red">
+    <h2 id="app2"></h2>
+</body>
+
+</html>
