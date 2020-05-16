@@ -1,37 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue Template - Watch</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css" />
 
     <style>
-        input {
-            width: 250px;
-        }
+      input {
+        width: 250px;
+      }
     </style>
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
-    
-    
-    
-
-    
-    
-    
-
-    
-
-</head>
-<body>
-    <xmp>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+      /* vue 플러그인 임포트 */
+    </script>
+  </head>
+  <body>
+    <xmp
+>
         Vue Reactivity 에 대해서 학습한다.
         Vue 인스턴스 속성에 대해서 학습한다. e dt mc^2 life cycele.
         Vue 인스턴스 속성중에 data, methods, computed, watch 의 특성과 차이점을 학습한다.
@@ -77,16 +73,43 @@
 
         [참조] page 106, 109~111, 179
     </xmp>
-    <hr>
+    <hr />
 
     <div id="app">
-        <input v-model="message">
-        <button v-on:click="reverseMsg">문자열 역순</button>
-        <p> </p>
-        <p>watch 속성을 자동 반영: {{ watchcopy }}</p>
-        <p>computed 속성을 자동 반영: {{ computedcopy }}</p>
-        <p>methods 속성을 이용한 수동 반영: {{ methodscopy }}</p>
+      <input v-model="message" />
+      <button v-on:click="reverseMsg">문자열 역순</button>
+      <p></p>
+      <p>watch 속성을 자동 반영: {{ watchcopy }}</p>
+      <p>computed 속성을 자동 반영: {{ computedcopy }}</p>
+      <p>methods 속성을 이용한 수동 반영: {{ methodscopy }}</p>
     </div>
-</body>
-
+  </body>
 </html>
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      message: "Hello, Vue.js",
+      watchcopy: "",
+      //computedcopy: "",
+      methodscopy: "",
+    },
+    methods: {
+      reverseMsg: function (e) {
+        this.message = this.message.split("").reverse().join("");
+        this.methodscopy = this.message;
+        //this.$data.methodscopy = this.$data.message;
+      },
+    },
+    watch: {
+      message: function (data) {
+        this.watchcopy = this.message;
+      },
+    },
+    computed: {
+      computedcopy: function () {
+        return this.message;
+      },
+    },
+  });
+</script>

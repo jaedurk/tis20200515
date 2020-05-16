@@ -1,31 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue Sample</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css" />
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
-    
-    
-    
-
-    
-    
-    
-
-    
-
-</head>
-<body>
-    <xmp>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+      /* vue 플러그인 임포트 */
+    </script>
+  </head>
+  <body>
+    <xmp
+>
         Vue 인스턴스 유효범위란?
 
         Vue 인스턴스 적용 과정
@@ -37,15 +33,42 @@
 
         [참조]page 42~44
     </xmp>
-    <hr>
+    <hr />
 
+    <xmp
+>
+        Vue 인스턴스 유효범위란?
+            인스턴스가 다르면 데이터를 공유할 수 없다.
+        
+        인스턴스가 다른 경우 어떻게 하면 데이터를 공아게 할 수 있나요?
+        자바스크립트 타입
+            value 타입 : string, boolean, number
+            reference 타입 : Array, Function, Object
+
+        문제
+        #app 의{{message}} 에는 "Hello"를 출력
+        #app2 의{{message}} 에는 "Vue.js"를 출력
+        [참조]page 42~44
+    </xmp>
     <div id="app">
-        {{ message }}
+      {{ message }}
     </div>
 
     <div id="app2">
-        {{ message }}
+      {{ message }}
     </div>
-</body>
+  </body>
 </html>
-
+<script>
+  var shared = {
+    message: "Hello",
+  };
+  vm1 = new Vue({
+    el: "#app",
+    data: shared,
+  });
+  vm2 = new Vue({
+    el: "#app2",
+    data: shared,
+  });
+</script>

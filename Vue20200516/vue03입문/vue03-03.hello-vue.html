@@ -1,31 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue Sample</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css" />
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
-    
-    
-    
-
-    
-    
-    
-
-    
-
-</head>
-<body>
-    <xmp>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+      /* vue 플러그인 임포트 */
+    </script>
+  </head>
+  <body>
+    <xmp
+>
         Hello, Vue!!! 를 출력하시오.
 
         작업 순서
@@ -36,10 +32,20 @@
 
         [참조]page 34,37,38
     </xmp>
-    <hr>
+    <hr />
 
     <div id="app">
-        {{ message }}
+      {{ message }}
     </div>
-</body>
+  </body>
 </html>
+<script>
+  // Vue() 생성자 함수. Vue 프로토타입(==클래스)
+  var vm = new Vue({
+    //대문자로 시작한다!! 클래스 생성자는 대문자로 시작한다
+    el: "#app", // # id css 선택자
+    data: {
+      message: "hello, vue.js!!!",
+    }, //data 프로퍼티에는 변수를 저장,
+  });
+</script>

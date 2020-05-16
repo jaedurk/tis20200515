@@ -1,33 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue Sample</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css" />
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
-    
-    
-    
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+      /* vue 플러그인 임포트 */
+    </script>
+  </head>
 
-    
-    
-    
-
-    
-
-</head>
-
-<body>
-    <xmp>
+  <body>
+    <xmp
+>
         아키텍처 패턴의 이해
         MVP : Net winform, swing , jQuery
         MVC : 스프링, angular
@@ -82,11 +77,30 @@
         [참조]page
 
     </xmp>
-    <hr>
+    <hr />
     <div id="my">
-        <h2>{{message}}</h2>
-        <button v-on:click="doClick">message 값 바꾸려면 click</button>
+      <h2>{{message}}</h2>
+      <button v-on:click="doClick">message 값 바꾸려면 click</button>
     </div>
-</body>
-
+  </body>
 </html>
+<script>
+  var vm = new Vue({
+    el: "#my",
+    data: {
+      message: "aaa",
+    },
+    methods: {
+      doClick: function (param) {
+        this.message = "change message!!!"; //this.message == this.$data.message
+      },
+    },
+  });
+
+  window.setTimeout(function () {
+    vm.$data.message = "change message at 3 seconds!!!";
+  }, 3000);
+  window.setTimeout(function () {
+    vm.$data.message = "change message at 5 seconds!!!";
+  }, 5000);
+</script>

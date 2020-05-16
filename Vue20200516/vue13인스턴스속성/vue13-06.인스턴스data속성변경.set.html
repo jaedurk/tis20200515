@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
     <!--개발버전-->
     <title>Document</title>
-</head>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+      /* vue 플러그인 임포트 */
+    </script>
+  </head>
 
-<body>
+  <body>
     <pre>
 
     data 속성 주의 사항
@@ -25,7 +27,7 @@
     문제점:
         인스턴스, 또는 컴포는트의 data 속성 값을 직접 바꾸면 화면 rendering 이 되지 않음
         즉, this.arr[0]=100; 과 같이 바꾸면 화면의 rendering 되지 않는 문제가 발생함.
-
+        data 속성에 있는 reference 타입은 값의 변경시 재할당이 필요하다
     해결방법
         1. Vue.set(object, key, value)를 이용해서 변경한다.
             Vue.set(this.arr, 0, 100);
@@ -47,12 +49,36 @@
         (5) [500, 3, 4, 800, 70]
         (5) [500, 3, 4, 800, 70]
     </pre>
-    <hr>
+    <hr />
     <div id="app">
-        <h2 v-for="(val, i) in arr" :key="i"> {{val}} </h2>
-        <button @click="change">배열 요소값 변경</button>
+      <h2 v-for="(val, i) in arr" :key="i">{{val}}</h2>
+      <button v-on:click="change">배열 요소값 변경</button>
     </div>
-</body>
-
+  </body>
 </html>
-
+
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      arr: [1, 2, 3, 4, 5],
+    },
+    methods: {
+      change: function () {
+        debugger;
+        Vue.set(this.arr, 0, 100);
+        console.log(this.arr); // this.arr == this.$data
+
+        this.$set(this.arr, 1, 300);
+        console.log(this.arr); // this.arr == this.$data
+
+        this.arr.splice(0, 2, 500); // 0번방, 1번방은 지우고 0번방에 500을 넣어라
+        console.log(this.arr); // this.arr == this.$data
+
+        var arrCopy = [...this.arr, 70]; // ... : spread 연산자
+        this.arr = arrCopy;
+        console.log(this.arr);
+      },
+    },
+  });
+</script>

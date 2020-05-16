@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue Sample</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
-
-</head>
-<body>
+    <link rel="stylesheet" href="../css/reset.css" />
+  </head>
+  <body>
     <pre>
 
         Vue 인스턴스 속성을 학습한다.
@@ -43,7 +45,7 @@
 
             해결방법
                 (1)Vue.set(object, key, value)를 이용해서 변경한다.
-                (2)this.$set(object, key, value)
+                (2)this.$set(object, key, value) => this 뷰 인스턴스를 의미
                 (3)splice()함수를 사용하여 변경
                 (4)배열 사본을 만들어 수정한 뒤 재할당=>ES6 (spread 연산자)
 
@@ -51,63 +53,66 @@
         <hr>
     </pre>
     <div>
-        <table>
-            <colgroup>
-                <col width="150px">
-                <col width="*">
-            </colgroup>
-            <thead>
-                <tr>
-                    <th>속성</th>
-                    <th>설명</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>el 속성</td>
-                    <td>
-                        element의 약자<br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>data 속성</td>
-                    <td>반응형 속성이다. 값이 바뀌면 자동으로 화면에 변경 사항이 반영된다. ==> 뷰 반응성</td>
-                </tr>
-                <tr>
-                    <td>template 속성</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>methods 속성</td>
-                    <td>
-                        이벤트나 화면 동작을 정의하는 영역. <br>
-                        수동 수행 ==> 호출할 때마다 로직이 수행. 사용자 행위시. 버튼 클릭<br>
-                        <br>
-                        &#187; 페이지 109 참고<br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>computed 속성</td>
-                    <td>
-                        data 속성의 데이터 연산을 정의하는 영역<br>
-                        자동 수행 ==> data 속성 값이 변경될 때 로직이 수행<br>
-                        <br>
-                        첫번째. data 속성 값의 변화에 따라 자동으로 수행.<br>
-                        두번째. 캐싱. 연산의 결과 값을 미리 저장하고 있다가 필요할 때 불러옴.<br>
-                        <br>
-                        &#187; 페이지 109 참고<br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>components 속성</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>watch 속성</td>
-                    <td>data 속성의 변경 여부를 추척한다</td>
-                </tr>
-            </tbody>
-        </table>
+      <table>
+        <colgroup>
+          <col width="150px" />
+          <col width="*" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>속성</th>
+            <th>설명</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>el 속성</td>
+            <td>element의 약자<br /></td>
+          </tr>
+          <tr>
+            <td>data 속성</td>
+            <td>
+              반응형 속성이다. 값이 바뀌면 자동으로 화면에 변경 사항이 반영된다.
+              ==> 뷰 반응성
+            </td>
+          </tr>
+          <tr>
+            <td>template 속성</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>methods 속성</td>
+            <td>
+              이벤트나 화면 동작을 정의하는 영역. <br />
+              수동 수행 ==> 호출할 때마다 로직이 수행. 사용자 행위시. 버튼
+              클릭<br />
+              <br />
+              &#187; 페이지 109 참고<br />
+            </td>
+          </tr>
+          <tr>
+            <td>computed 속성</td>
+            <td>
+              data 속성의 데이터 연산을 정의하는 영역<br />
+              자동 수행 ==> data 속성 값이 변경될 때 로직이 수행<br />
+              <br />
+              첫번째. data 속성 값의 변화에 따라 자동으로 수행.<br />
+              두번째. 캐싱. 연산의 결과 값을 미리 저장하고 있다가 필요할 때
+              불러옴.<br />
+              <br />
+              &#187; 페이지 109 참고<br />
+            </td>
+          </tr>
+          <tr>
+            <td>components 속성</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>watch 속성</td>
+            <td>data 속성의 변경 여부를 추척한다</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-</body>
+  </body>
 </html>
