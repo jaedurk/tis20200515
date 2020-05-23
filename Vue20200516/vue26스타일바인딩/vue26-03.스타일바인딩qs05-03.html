@@ -1,33 +1,38 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue Sample</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css" />
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+      /* vue 플러그인 임포트 */
+    </script>
 
     <style>
-        div.button {
-            width: 100px;
-            height: 50px;
-            border: 1px solid black;
-            text-align: center;
-            line-height: 50px;
-        }
+      div.button {
+        width: 100px;
+        height: 50px;
+        border: 1px solid black;
+        text-align: center;
+        line-height: 50px;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-    <xmp>
+  <body>
+    <xmp
+>
         javascript에서 style 프로퍼티 설정 방식과 설정시의 주의 사항을 학습한다.
           1. 명칭은 카멜 표기법 사용. 왜냐하면 자바스립트이기 때문.
             예시) 케밥 표기법 ==> 카멜 표기법
@@ -58,41 +63,41 @@
           padding: 50px;
     </xmp>
     <style>
-        #example3>* {
-            float:left;
-            margin: 10px 50px 10px 0px;
-            line-height: 100px;
-        }
-        #example3asis {
-            height: 50px;
-            width: 150px;
-            border: 1px solid black;
-            text-align: center;
-            line-height: 50px;
-            font-weight: 800;
-            color: red;
-            background-color: darkgoldenrod;
-            padding: 50px;
-        }
-        #example3tobe{
-            border: 1px dashed blue;
-            width: 150px;
-        }
+      #example3 > * {
+        float: left;
+        margin: 10px 50px 10px 0px;
+        line-height: 100px;
+      }
+      #example3asis {
+        height: 50px;
+        width: 150px;
+        border: 1px solid black;
+        text-align: center;
+        line-height: 50px;
+        font-weight: 800;
+        color: red;
+        background-color: darkgoldenrod;
+        padding: 50px;
+      }
+      #example3tobe {
+        border: 1px dashed blue;
+        width: 150px;
+      }
     </style>
     <div id="example3">
-
-        <span id="example3asis">
-            AS-IS
-        </span>
-        <button v-on:click="clickArrow">
-            ==>
-        </button>
-        <div id="example3tobe" v-bind:style="style1">
-            TO-BE
-        </div>
+      <span id="example3asis">
+        AS-IS
+      </span>
+      <button v-on:click="clickArrow">
+        ==>
+      </button>
+      <div id="example3tobe" v-bind:style="style1">
+        TO-BE
+      </div>
     </div>
-    <hr style="clear:both;">
-    <xmp>
+    <hr style="clear: both;" />
+    <xmp
+>
         도전: mouseover 와 mouseout 이벤트를 사용하는 것을 복습한다.
         버튼 위로 mouseover 되면 배경색은 purple 로 글자색은 yellow 로 바꾸도록 style 을 설정하시오.
         버튼 위에서 mouseout 되면 배경색을 aqua 로 글자색은 black 으로 바꾸도록 style 을 설정하시오.
@@ -100,30 +105,110 @@
         https://javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave
     </xmp>
     <style>
-        div > #eljvs, div > #elvue {
-
-            float:left;
-            margin: 10px 50px 50px 0px;
-            line-height: 100px;
-        }
+      div > #eljvs,
+      div > #elvue {
+        float: left;
+        margin: 10px 50px 50px 0px;
+        line-height: 100px;
+      }
     </style>
     <div>
-        <div id="eljvs">
-            자바스크립로 style 적용<br>
-            <div style=" width: 100px; height: 50px; border: 1px solid black; text-align: center; line-height: 50px;"
-                id="a" onmouseover="overEvent(this)" onmouseout="outEvent(this)">
-                테스트
-            </div>
+      <div id="eljvs">
+        자바스크립로 style 적용<br />
+        <div
+          style="
+            width: 100px;
+            height: 50px;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 50px;
+          "
+          id="a"
+          onmouseover="overEvent(this)"
+          onmouseout="outEvent(this)"
+        >
+          테스트
         </div>
+      </div>
 
-        <div id="elvue">
-            Vue.js 로 style 적용<br>
-            <div id="c" v-bind:style="style1" v-on:mouseover="overEvent(this)" v-on:mouseout="outEvent(this)">
-                테스트
-            </div>
+      <div id="elvue">
+        Vue.js 로 style 적용<br />
+        <div
+          id="c"
+          v-bind:style="style1"
+          v-on:mouseover="overEvent(this)"
+          v-on:mouseout="outEvent(this)"
+        >
+          테스트
         </div>
+      </div>
     </div>
-    <hr style="clear:both;">
-</body>
-
+    <hr style="clear: both;" />
+  </body>
 </html>
+<script>
+  new Vue({
+    el: "#example3",
+    data: {
+      style1: "",
+    },
+    methods: {
+      clickArrow: function (e) {
+        /*
+        height: 50px;
+          width: 150px;
+          border: 1px solid black;
+          text-align: center;
+          line-height: 50px;
+          font-weight: 800;
+          color: red;
+          background-color: darkgoldenrod;
+          padding: 50px;
+        */
+        this.$data.style1 = {
+          height: "50px",
+          width: "150px",
+          border: "1px solid black",
+          textAlign: "center",
+          lineHeight: "50px",
+          fontWeight: "800",
+          color: "red",
+          backgroundColor: "darkgoldenrod",
+          padding: "50px",
+        };
+      },
+    },
+  });
+
+  new Vue({
+    el: "#elvue",
+    data: {
+      style1: {
+        width: "100px",
+        height: "50px",
+        border: "1px solid black",
+        textAlign: "center",
+        lineHeight: "50px",
+      },
+    },
+    methods: {
+      overEvent: function (e) {
+        //this.$data.style1.backgroundColor = "purple";
+        //this.$data.style1.color = "yellow";
+        //재할당 처리 필요. referenced type 이기 때문
+        // object Deep Copy : Object.assign( ); 사용
+        var copied = Object.assign({}, this.style1);
+
+        copied["backgroundColor"] = "purple";
+        copied["color"] = "yellow";
+        this.$data.style1 = copied;
+      },
+      outEvent: function (e) {
+        var copied = Object.assign({}, this.style1);
+        copied["backgroundColor"] = "aqua";
+        copied["color"] = "black";
+        this.$data.style1 = copied;
+      },
+    },
+  });
+</script>

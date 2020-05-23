@@ -18,4 +18,13 @@
     <a href="http://www.naver.com" id="button"/>이벤트 취소</a>
 </body>
 </html>
-
+<script>
+var button = document.getElementById("button");
+button.addEventListener("click", function(e){
+    console.log(e.target);
+    //이벤트 취소
+    e.stopPropagation();
+    e.preventDefault();
+});
+</script>
+
