@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Sample</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"
+    >
+      /* JSX를 자바스크립트로 변환 */
+    </script>
+  </head>
+  <body>
+    <pre>
+
+        Babel 에 대해서 학습한다.
+
+        Babel 이란 JS 컴파일러(=변역기)다.
+            ES6 를 ES5 로 바꾸어 주는(컴파일)
+        JSX 사용시에는 반드시 필요함
+    </pre>
+    <div id="output"></div>
+  </body>
+</html>
+<!-- Load Babel -->
+<!-- v6  -->
+
+<!-- Your custom script here -->
+<script type="text/babel">
+  //* babel : es6 ==>es5 번역하는 자바스크립트 컴파일러
+  /* ES5 작성시
+        var getMessage = function(){
+            return "Hello, world!!!";
+        }
+    */
+  const getMessage = () => "Hello, world!!!";
+
+  document.getElementById("output").innerText = getMessage();
+</script>

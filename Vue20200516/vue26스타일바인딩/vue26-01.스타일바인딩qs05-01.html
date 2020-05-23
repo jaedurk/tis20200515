@@ -14,11 +14,6 @@
 
     <!-- vue 스크립트 플러그인 임포트   -->
     
-    
-    
-    
-
-    
 
     <style>
         .csbord {
@@ -37,7 +32,6 @@
         click 이벤트를 사용하는 것을 복습한다.
 
         javascript 에서의 class 속성 설정 방식을 학습한다.
-        jQuery 에서의 class 속성 설정 방식을 학습한다.
         vue.js 에서의 class 속성 설정 방식을 학습한다.
 
         자바스크립를 이용하여
@@ -56,9 +50,10 @@
     </xmp>
     <hr>
 
-    <div class="csbord whsize">
+    <div class="whsize csbord">
         csbord 와 whsize class 속성이 적용된 모습
     </div>
+    <hr>
 
     <div id="app">
 
@@ -73,39 +68,19 @@
     </div>
     <hr>
 
-    <div>
-        <div id="app2" style="background-color: orange;">
-            jQuery를 사용하여 csbord 와 whsize class 속성 설정<br>
-        </div>
-
-        <br>
-
-        <button v-on:click="btn5_onclick(true )">csbord 와 whsize class 속성 추가</button>
-        <button v-on:click="btn5_onclick(false)">csbord 와 whsize class 속성 제거</button>
-        <br>
-        <button v-on:click="btn6_onclick('whsize', true )">whsize class 속성 추가</button>
-        <button v-on:click="btn6_onclick('whsize', false)">whsize class 속성 제거</button>
-        <br>
-        <button v-on:click="btn6_onclick('csbord', true )">csbord class 속성 추가</button>
-        <button v-on:click="btn6_onclick('csbord', false)">csbord class 속성 추가</button>
-    </div>
-    <hr>
-
     <div id="app3" >
         <div style="background-color: orange;" v-bind:class="css1">
             Vue.js의 v-bind 디렉티브(지시자)를 사용하여 csbord 와 whsize class 속성 설정<br>
         </div>
-
-        <br>
-
-        <button v-on:click="btn5_onclick(true )">csbord 와 whsize class 속성 추가</button>
-        <button v-on:click="btn5_onclick(false)">csbord 와 whsize class 속성 제거</button>
         <br>
         <button v-on:click="btn6_onclick('whsize', true )">whsize class 속성 추가</button>
         <button v-on:click="btn6_onclick('whsize', false)">whsize class 속성 제거</button>
         <br>
         <button v-on:click="btn6_onclick('csbord', true )">csbord class 속성 추가</button>
         <button v-on:click="btn6_onclick('csbord', false)">csbord class 속성 추가</button>
+        <br>
+        <button v-on:click="btn5_onclick(true )">csbord 와 whsize class 속성 추가</button>
+        <button v-on:click="btn5_onclick(false)">csbord 와 whsize class 속성 제거</button>
     </div>
 </body>
 
