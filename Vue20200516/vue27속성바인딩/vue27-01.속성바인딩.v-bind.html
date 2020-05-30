@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue Template - Data Binding</title>
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css" />
 
     <style>
-        .container {
-            color: red;
-            font-weight: bold;
-            font-size:  20pt;
-        }
+      .container {
+        color: red;
+        font-weight: bold;
+        font-size: 20pt;
+      }
     </style>
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
-
-</head>
-<body>
-    <xmp>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+      /* vue 플러그인 임포트 */
+    </script>
+  </head>
+  <body>
+    <xmp
+>
 
         v-bind 디렉티브에 대해서 알아본다.
 
@@ -39,45 +41,91 @@
 
         [참조]page
     </xmp>
-    <hr>
+    <hr />
 
     <h2>v-bind 연습</h2>
     <div id="app1">
-        <p v-bind:id="idA">
-            <button v-on:click="clickBindId">클릭</button>
-            아이디 바인딩
-        </p>
-        <p v-bind:class="classA">
-            <button v-on:click="clickBindClass">클릭</button>
-            클래스 바인딩
-        </p>
-        <p v-bind:style="styleA">
-            <button v-on:click="clickBindStyle">클릭</button>
-            스타일 바인딩
-        </p>
+      <p v-bind:id="idA">
+        <button v-on:click="clickBindId">클릭</button>
+        아이디 바인딩
+      </p>
+      <p v-bind:class="classA">
+        <button v-on:click="clickBindClass">클릭</button>
+        클래스 바인딩
+      </p>
+      <p v-bind:style="styleA">
+        <button v-on:click="clickBindStyle">클릭</button>
+        스타일 바인딩
+      </p>
 
-        <p>
-            <button v-on:click="clickBindValue">클릭</button>
-            <input id="a" type="text" v-bind:value="message">
-        </p>
+      <p>
+        <button v-on:click="clickBindValue">클릭</button>
+        <input id="a" type="text" v-bind:value="message" />
+      </p>
 
-        <p>
-            <button v-on:click="clickBindSrc">클릭</button>
-            <img v-bind:src="imagePath" />
-        </p>
+      <p>
+        <button v-on:click="clickBindSrc">클릭</button>
+        <img v-bind:src="imagePath" />
+      </p>
     </div>
-    <hr>
+    <hr />
 
     <h2>v-bind 실습</h2>
     <div id="app2">
-        <p>
-            <button v-on:click="clickBindSrc">클릭</button>
-            <input id="a" type="text" v-bind:value="message" placeholder="입력하세요" />
-            <img v-bind:src="imagePath" />
-        </p>
+      <p>
+        <button v-on:click="clickBindSrc">클릭</button>
+        <input
+          id="a"
+          type="text"
+          v-bind:value="message"
+          placeholder="입력하세요"
+        />
+        <img v-bind:src="imagePath" />
+      </p>
     </div>
 
-    <hr>
-
-</body>
+    <hr />
+  </body>
 </html>
+<script>
+  new Vue({
+    el: "#app1",
+    data: {
+      idA: null,
+      classA: null,
+      styleA: null,
+      message: "",
+      imagePath: "",
+    },
+    methods: {
+      clickBindId: function (event) {
+        this.$data.idA = this.$data.idA + 10;
+      },
+      clickBindClass: function (event) {
+        this.$data.classA = "container";
+      },
+      clickBindStyle: function (event) {
+        this.$data.styleA = "color:blue;font-size:20pt;";
+      },
+      clickBindValue: function (event) {
+        this.$data.message = "v-bind 디렉티브";
+      },
+      clickBindSrc: function (event) {
+        this.$data.imagePath = "../images/heart.png";
+      },
+    },
+  });
+  new Vue({
+    el: "#app2",
+    data: {
+      message: "",
+      imagePath: "",
+    },
+    methods: {
+      clickBindSrc: function (event) {
+        this.$data.message = "버튼 클릭";
+        this.$data.imagePath = "../images/heart.png";
+      },
+    },
+  });
+</script>

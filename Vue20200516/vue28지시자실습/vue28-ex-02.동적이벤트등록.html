@@ -1,59 +1,119 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>동적 이벤트 설정</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>동적 이벤트 설정</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css" />
 
-	<style>
-	    p { background:yellow; font-weight:bold; cursor:pointer; padding:5px; }
-	    span { background:pink; font-weight:bold; cursor:pointer; padding:5px; display:block; margin-top:10px;}
-	    #app > div { border: 1px dashed red; }
-	</style>
+    <style>
+      p {
+        background: yellow;
+        font-weight: bold;
+        cursor: pointer;
+        padding: 5px;
+      }
+      span {
+        background: pink;
+        font-weight: bold;
+        cursor: pointer;
+        padding: 5px;
+        display: block;
+        margin-top: 10px;
+      }
+      #app > div {
+        border: 1px dashed red;
+      }
+    </style>
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
-
-</head>
-<body>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+      /* vue 플러그인 임포트 */
+    </script>
+  </head>
+  <body>
     <xmp>
           동적으로 추가된 엘리먼트, p 와 span 태그에 click 이벤트를 설정하고
           동적으로 추가된 p 와 span 엘리먼트를 click 하면
-          <p id="rhtml"> 에 click 한 태그를 출력하시오.
-    </xmp>
-    <hr>
+          <p id="rhtml">에 click 한 태그를 출력하시오.</p></xmp>
+
+    <hr />
     <div id="app">
+      <p v-on:click="clickPtag">
+        Click me! 클릭하면 id=ptag 에 추가하시고 <br />
+        추가된 p 엘리먼트에 click 이벤트를 추가하시오
+      </p>
+      <div id="ptag" v-on:click="clickDynamic">
+        <p v-for="(pval, i) in ptags" v-bind:key="i">{{pval}}</p>
+      </div>
+      <hr />
 
-        <p v-on:click="clickPtag">
-            Click me! 클릭하면 id=ptag 에 추가하시고 <br>
-            추가된 p 엘리먼트에 click 이벤트를 추가하시오
-        </p>
-        <div id="ptag" v-on:click="clickDynamic">
-            <p v-for="(pval, i) in ptags" v-bind:key="i">{{pval}}</p>
-        </div>
-        <hr>
+      <span v-on:click="clickStag">
+        Click me! 클릭하면 id=stag 에 추가하고 <br />
+        추가된 span 엘리먼트에 click 이벤트를 추가하시오
+      </span>
+      <div id="stag" v-on:click="clickDynamic">
+        <span v-for="(sval, i) in stags" v-bind:key="i">{{sval}}</span>
+      </div>
+      <hr />
 
-        <span v-on:click="clickStag">
-            Click me! 클릭하면 id=stag 에 추가하고 <br>
-            추가된 span 엘리먼트에 click 이벤트를 추가하시오
-        </span>
-        <div id="stag" v-on:click="clickDynamic">
-            <span  v-for="(sval, i) in stags" v-bind:key="i">{{sval}}</span>
-        </div>
-        <hr>
-
-        <p id="rhtml" v-html="rhtml" style="background-color: white; border: 1px dashed blue;">
-            결과
-        </p>
+      <p
+        id="rhtml"
+        v-html="rhtml"
+        style="background-color: white; border: 1px dashed blue;"
+      >
+        결과
+      </p>
     </div>
-</body>
+  </body>
 </html>
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      ptags: [],
+      stags: [],
+      rhtml: null,
+    },
+    methods: {
+      clickPtag: function (e) {
+        //this.$data.ptags 는 참조 타입. 재할당 필요
+        // Vue.set()
+        //this.set()
+        // spread 연산자(배열타입), Objecto.assign(): 객체타입
 
-
+        Vue.set(
+          this.ptags,
+          this.$data.ptags.length,
+          this.$data.ptags.length + " p paragraph!!!"
+        );
+      },
+      clickDynamic: function (e) {
+        console.log(e.target);
+        console.log(e.target.innerHTML);
+        // p태그에서 클릭한 경우에만 표시
+        // span 태그에서 클릭한 경우에만 표시한다
+        // node의 태그이름을 어떻게 알 수 있을까?
+        if (e.target.tagName === "P") {
+          this.$data.rhtml = e.target.innerHTML;
+        }
+      },
+      clickStag: function (e) {
+        Vue.set(
+          this.stags,
+          this.$data.stags.length,
+          this.$data.stags.length + " span paragraph!!!"
+        );
+      },
+    },
+  });
+</script>

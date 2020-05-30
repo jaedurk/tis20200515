@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue Template - Directives</title>
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+      /* vue 플러그인 임포트 */
+    </script>
+  </head>
 
-</head>
-
-<body>
-    <xmp>
+  <body>
+    <xmp
+>
 Vue.js v-for  지시자 에 대해서 학습한다.
 
 단순 배열을 바인딩하는 방법 학습
@@ -41,22 +42,52 @@ var objarray = [
 
 [참조]page 104
     </xmp>
-    <hr>
+    <hr />
 
     <h2>컴포넌트와 반복 지시자</h2>
     <div id="app">
-
-        <p>
-            <button v-on:click="clickAddBox">박스 추가</button>
-        </p>
-        <p>
-            <b v-for="(val, i) in arr" v-bind:key="i">
-                <component-box v-bind:num="val"></component-box>
-            </b>
-        </p>
+      <p>
+        <button v-on:click="clickAddBox">박스 추가</button>
+      </p>
+      <p>
+        <b v-for="(val, i) in arr" v-bind:key="i">
+          <component-box v-bind:num="val"></component-box>
+        </b>
+      </p>
     </div>
-    <hr>
-
-</body>
-
+    <hr />
+  </body>
 </html>
+<script>
+  Vue.component("component-box", {
+    props: ["num"],
+    data: function () {
+      return {
+        style1: {
+          display: "inline-block",
+          fontSize: "3em",
+          border: "1px dashed blue",
+          padding: " 10px 20px",
+          margin: "5px",
+          textAlign: "center",
+        },
+      };
+    },
+    template: `
+        <span v-bind:style = "style1">
+            {{ num }}
+        </span>
+    `,
+  });
+  new Vue({
+    el: "#app",
+    data: {
+      arr: [0],
+    },
+    methods: {
+      clickAddBox: function (e) {
+        Vue.set(this.$data.arr, this.$data.arr.length, this.$data.arr.length);
+      },
+    },
+  });
+</script>
