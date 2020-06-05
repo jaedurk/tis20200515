@@ -66,10 +66,56 @@
   new Vue({
     el: "#app",
     data: {
+      movieimage: 0,
       movieimageSrc: "../images/00.png",
     },
     methods: {
-      clickNext: function () {},
+      clickPrev: function (e) {
+        if (this.$data.movieimage < 1) {
+          this.$data.movieimage = 0;
+        } else {
+          this.$data.movieimage = this.$data.movieimage - 1;
+        }
+        if (this.$data.movieimage < 10) {
+          this.$data.movieimageSrc =
+            "../images/0" + this.$data.movieimage + ".png";
+        } else if (this.$data.movieimage > 9) {
+          this.$data.movieimageSrc =
+            "../images/" + this.$data.movieimage + ".png";
+        }
+      },
+      clickNext: function (e) {
+        if (this.$data.movieimage >= 14) {
+          this.$data.movieimage = 14;
+        } else {
+          this.$data.movieimage = this.$data.movieimage + 1;
+        }
+        if (this.$data.movieimage < 10) {
+          this.$data.movieimageSrc =
+            "../images/0" + this.$data.movieimage + ".png";
+        } else if (this.$data.movieimage > 9) {
+          this.$data.movieimageSrc =
+            "../images/" + this.$data.movieimage + ".png";
+        }
+      },
+      clickStart: function (e) {
+        this.$data.movieimage = this.$data.movieimage;
+        setInterval(function () {
+          /* this.$data.movieimage = this.$data.movieimage + 1;
+          if (this.$data.movieimage > 14) {
+            this.$data.movieimage = 0;
+          }
+          if (this.$data.movieimage < 10) {
+            this.$data.movieimageSrc =
+              "../images/0" + this.$data.movieimage + ".png";
+          } else if (this.$data.movieimage > 9) {
+            this.$data.movieimageSrc =
+              "../images/" + this.$data.movieimage + ".png";
+          } */
+          console.log(this.$data.movieimage);
+        }, 1000);
+      },
+      clickStop: function (e) {},
     },
   });
 </script>
