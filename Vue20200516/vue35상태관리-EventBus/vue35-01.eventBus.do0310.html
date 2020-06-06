@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue Event Bus Sample</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css" />
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
-
-</head>
-<body>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+      /* vue 플러그인 임포트 */
+    </script>
+  </head>
+  <body>
     <pre>
 
        Vue의 상태관리 방법을 배운다.
@@ -23,10 +27,33 @@
 
        [참조]page 62~75
     </pre>
-    <hr>
+    <hr />
     <div id="app">
-        <child-component></child-component>
+      <child-component></child-component>
     </div>
-
-</body>
+  </body>
 </html>
+<script>
+  //이벤트버스 설정
+  var eventBus = new Vue();
+  eventBus.$on("triggerEventBus" /* 이벤트명 */, function (value) {
+    console.log("이벤트로 전달 받은 값 :", value);
+  });
+  Vue.component("child-component", {
+    template: `
+        <div>
+            하위 컴포넌트 영역
+            <button v-on:click="showLog">show</button>
+        </div>
+      `,
+    methods: {
+      showLog: function (e) {
+        // 이벤트 발생시키기
+        eventBus.$emit("triggerEventBus", 100);
+      },
+    },
+  });
+  new Vue({
+    el: "#app",
+  });
+</script>

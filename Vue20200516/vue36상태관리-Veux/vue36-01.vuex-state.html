@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vuex Sample</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css" />
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
-    
-    
-    
-</head>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+      /* vue 플러그인 임포트 */
+    </script>
+    <script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js">
+      /* vuex 플러그인 임포트 */
+    </script>
+  </head>
 
-<body>
+  <body>
     <pre>
 
       1. Vuex란?
@@ -52,13 +56,69 @@
        . state : 컴포넌트 간에 공유할 data
        . getter:
     </pre>
-    <hr>
+    <hr />
     <div id="app">
-        <h1>{{header}}</h1>
-        <h2>{{welcome}}</h2>
-        <h3>{{counter}}</h3>
-        <button @click="increment">나를 눌러줘</button>
+      <h1>{{header}}</h1>
+      <h2>{{welcome}}</h2>
+      <h3>{{counter}}</h3>
+      <button v-on:click="increment">나를 눌러줘</button>
     </div>
-</body>
-
+  </body>
 </html>
+<script>
+  // Vuex 인스턴스 생성
+  var store = new Vuex.Store({
+    actions: {
+      //비동기처리
+      increment: function (mutations, playload) {
+        window.setTimeout(function () {
+          //mutation 호출
+          mutations.commit("increment", playload);
+        }, 1000);
+      },
+    },
+    mutations: {
+      // 동기처리
+      increment: function (state, playload) {
+        // state 저장
+        state.count = state.count + playload;
+      },
+    },
+    state: {
+      // 변수 선언
+      msg: "Hello, world!!",
+      count: 0,
+    },
+    getters: {
+      // state 변수에 대한 getter 함수 만들기
+      msg: function (state) {
+        return state.msg;
+      },
+      count: function (state) {
+        return state.count;
+      },
+    },
+  });
+
+  // Vue 인스턴스 생성
+  new Vue({
+    el: "#app",
+    data: {
+      header: "Vuex 사용 앱",
+    },
+    methods: {
+      increment: function () {
+        // store.dispatch("action명",값);
+        store.dispatch("increment", 10);
+      },
+    },
+    computed: {
+      welcome: function () {
+        return store.getters.msg;
+      },
+      counter: function () {
+        return store.getters.count;
+      },
+    },
+  });
+</script>

@@ -99,8 +99,9 @@
         }
       },
       clickStart: function (e) {
-        this.$data.movieimage = this.$data.movieimage;
-        setInterval(function () {
+        var auto = setInterval(function (e) {
+          console.log("a");
+
           /* this.$data.movieimage = this.$data.movieimage + 1;
           if (this.$data.movieimage > 14) {
             this.$data.movieimage = 0;
@@ -112,10 +113,12 @@
             this.$data.movieimageSrc =
               "../images/" + this.$data.movieimage + ".png";
           } */
-          console.log(this.$data.movieimage);
         }, 1000);
+        this.$data.movieimage;
       },
-      clickStop: function (e) {},
+      clickStop: function (e) {
+        clearInterval(auto);
+      },
     },
   });
 </script>

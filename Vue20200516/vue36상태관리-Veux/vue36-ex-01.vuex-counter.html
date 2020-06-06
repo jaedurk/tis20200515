@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vuex Sample</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css" />
 
     <style>
-
-    .component-parent {
+      .component-parent {
         width: 50%;
         background-color: lightblue;
-        padding:5%;
-    }
-    .component-child {
+        padding: 5%;
+      }
+      .component-child {
         width: 80%;
         background-color: lightgray;
         padding: 5% 5% 10% 0;
-    }
+      }
     </style>
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
-    
-    
-    
-</head>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+      /* vue 플러그인 임포트 */
+    </script>
+    <script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js">
+      /* vuex 플러그인 임포트 */
+    </script>
+  </head>
 
-<body>
+  <body>
     <pre>
 
         예제 "34-ex-01-counter.html" 를 Vuex를 사용하는 벙법으로 바꾸어 본다.
@@ -63,17 +66,90 @@
           Child 컴포넌트에서  - 버튼을 클릭하면 sub-counter 이벤트 발생
 
     </pre>
-    <hr>
+    <hr />
 
     <div id="app" class="component-parent">
-        Parent counter : {{ counter }} <br>
-        <button v-on:click="addCounter">+</button>
-        <button v-on:click="subCounter">-</button>
-        <p></p>
+      Parent counter : {{ counter }} <br />
+      <button v-on:click="addCounter">+</button>
+      <button v-on:click="subCounter">-</button>
+      <p></p>
 
-        <!-- Child 컴포넌트를 등록하고 counter 데이터 속성을 props로 전달한다. -->
-        <component-child></component-child>
+      <!-- Child 컴포넌트를 등록하고 counter 데이터 속성을 props로 전달한다. -->
+      <component-child></component-child>
     </div>
-</body>
-
+  </body>
 </html>
+<script>
+  var store = new Vuex.Store({
+    actions: {
+      increment: function (mutations, playload) {
+        window.setTimeout(function () {
+          mutations.commit("increment", playload);
+        }, 1000);
+      },
+      decrement: function (state, playload) {
+        window.setTimeout(function () {
+          state.commit("decrement", playload);
+        }, 1000);
+      },
+    },
+    mutations: {
+      increment: function (state, playload) {
+        state.count = state.count + playload;
+      },
+      decrement: function (state, playload) {
+        state.count = state.count - playload;
+      },
+    },
+    state: {
+      count: 0,
+    },
+    getters: {
+      count: function (state) {
+        return state.count;
+      },
+    },
+  });
+  Vue.component("component-child", {
+    name: "component-child",
+    props: {},
+    data: function () {
+      return {};
+    },
+    template: `
+        <div style="background-color:#bbb">
+            Child counter : {{ counter }} <br />
+            <button v-on:click="addCounter">+</button>
+            <button v-on:click="subCounter">-</button>
+        </div>
+    `,
+    methods: {
+      addCounter: function (event) {},
+      subCounter: function (event) {},
+    },
+    computed: {
+      counter: function () {
+        store.getters.count;
+      },
+    },
+  });
+  new Vue({
+    el: "#app",
+    data: {
+      //counter: 0,
+    },
+    methods: {
+      addCounter: function (event) {
+        store.dispatch("increment", 1);
+      },
+      subCounter: function (event) {
+        store.dispatch("decrement", -1);
+      },
+    },
+    computed: {
+      counter: function () {
+        return store.getters.count;
+      },
+    },
+  });
+</script>

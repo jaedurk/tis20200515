@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue Event Emit Sample</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css" />
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
-    
-    
-    
-
-</head>
-<body>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+      /* vue 플러그인 임포트 */
+    </script>
+  </head>
+  <body>
     <pre>
 
       Vue 컴포넌트 상태관리에 대해서 배운다.
@@ -37,14 +38,61 @@
 
       1. How to scorll at a bottom of textarea?
     </pre>
-    <hr>
+    <hr />
     <div id="app">
-        <child-component v-on:count-add="printTextAdd" v-on:count-clear="printTextClear"></child-component>
-        <hr>
-        <textarea name="txt-area" id="txt-area" cols="30" rows="10" v-model="message">
-
-        </textarea>
+      <child-component
+        v-on:count-add="printTextAdd"
+        v-on:count-clear="printTextClear"
+      ></child-component>
+      <hr />
+      <textarea
+        name="txt-area"
+        id="txt-area"
+        cols="30"
+        rows="10"
+        v-model="message"
+      >
+      </textarea>
     </div>
-
-</body>
+  </body>
 </html>
+<script>
+  Vue.component("child-component", {
+    name: "child-component",
+    props: "",
+    data: function () {
+      return {
+        count: 0,
+      };
+    },
+    template: `
+        <div>
+            <button v-on:click="addCount">Add Count</button>
+            <button v-on:click="clearCount">Clear Count</button>
+        </div>
+    `,
+    methods: {
+      addCount: function () {
+        this.$data.count = this.$data.count + 1;
+        this.$emit("count-add", this.$data.count);
+      },
+      clearCount: function () {
+        this.$emit("count-clear");
+      },
+    },
+  });
+  new Vue({
+    el: "#app",
+    data: {
+      message: 0,
+    },
+    methods: {
+      printTextAdd: function (event) {
+        this.$data.message = this.$data.message + "\n" + event;
+      },
+      printTextClear: function (event) {
+        this.$data.message = "";
+      },
+    },
+  });
+</script>
