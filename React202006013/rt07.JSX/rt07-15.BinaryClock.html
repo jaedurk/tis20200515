@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/reset.css" />
+  </head>
+
+  <body>
+    <xm>
+      <img src="../images/binaryclock.png" alt="" />
+    </xm>
+    <hr />
+
+    <div id="app"></div>
+  </body>
+</html>
+
+<!-- react 플러그인 include   -->
+<!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"
+>
+  /* import { React} from 'react'; */
+</script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js"
+>
+  /* import { ReactDOM } from 'react-dom'; */
+</script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"
+>
+  /* JSX를 자바스크립트로 변환 */
+</script>
+<script type="text/babel">
+  console.log(ReactDOM);
+
+  // 1 ==> 01로 만드는 함수
+  const z2 = function (val) {
+    const str = "00" + val;
+    return str.substr(str.length - 2, 2); //001 = 01, 0011 ==> 11
+  };
+
+  window.setInterval(function (e) {
+    const now = new Date();
+    // 10진수 시계 :시, 분, 초 구하기
+    const hh = z2(now.getHours()); // 1=>01, 1=>11
+    const mm = z2(now.getMinutes()); // 1=>01, 11=>11
+    const ss = z2(now.getSeconds()); // 1=>01, 11=>11
+
+    /* 작업순서
+    1. 문자열을 숫자로 만든다.
+    2. 십진수를 이준수로 만든다. ==> 문자열.toString(2)
+    3. 끝부터 4개의 문자만 가져오기
+    4. 이진 숫자를 JSX로 만들고  배열에 추가한다.
+    */
+
+    // 2진수 시계
+    const lines = []; //JSX 가 담기는 배열. 6행4열
+    const binStr = hh + mm + ss; // 11:03:44 ==> 110344
+    for (let i = 0; i < binStr.length; i++) {
+      //문자를 숫자로 바꾼다. Number()
+
+      const v = Number(binStr.substr(i, 1));
+      // 십진수를 이진수로 바꾼다.
+      const bin2 = "0000" + v.toString(2); //0000 +1 ==> 00001
+      //3. 끝부터 4개의 문자만 가져오기
+      const bin8 = bin2.substr(bin2.length - 4, 4); // 00001 ==> 0001
+      //4. 이진 숫자를 JSX로 만들고 배열에 추가한다.
+      // 0001 을 이용하여 태그 만들기 0001 ===> ○○○●<br>
+      for (let j = 0; j < bin8.length; j++) {
+        if (bin8.substr(j, 1) === "0") {
+          lines.push(<span key={i + "" + j}>○</span>);
+        } else {
+          lines.push(<span key={i + "" + j}>●</span>);
+        }
+      }
+      lines.push(<br key={i + "4"} />);
+      // 0001 ===> ○○○●<br>
+    }
+
+    ReactDOM.render(
+      <div>
+        <div>
+          {/* 11:03:44 */}
+          {hh} : {mm} : {ss}
+        </div>
+        <div>{lines}</div>
+      </div>,
+      document.getElementById("app")
+    );
+  }, 1000);
+</script>

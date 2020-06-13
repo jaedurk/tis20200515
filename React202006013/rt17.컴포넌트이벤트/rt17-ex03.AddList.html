@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Add Element Dynamically</title>
+
+    <link rel="stylesheet" href="../css/reset.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+
+<body>
+    <xmp>
+        div#app  의 innerHTML 부분을 컴포넌트로 만들시오.
+
+        <div id="app" class="app-container">
+            <!-- 컴포넌트로 만들 영역 : 시작 -->
+            <!-- 컴포넌트로 만들 영역 : 종료 -->
+        </div>
+    </xmp>
+    <hr>
+
+    <div id="wrapper">
+        <div class="container">
+            <div class="row">
+                <article class="col-md-12">
+                    <h1 class="text-center">Simple List in React</h1>
+                    <h2 class="text-center">Adding a dynamically generated list item</h2>
+                    <div id="app" class="app-container">
+
+                        <!-- 컴포넌트로 만들 영역 : 시작 -->
+                        <div class="component-wrapper">
+                            <div class="container">
+                                <ul class="list-group text-center">
+                                    <li class="list-group-item list-group-item-info">orange</li>
+                                    <li class="list-group-item list-group-item-info">apple</li>
+                                </ul>
+                            </div>
+                            <form class="form-inline">
+                                <div class="form-group"><label for="fruitItem">Fruit Name<input type="text" id="fruitItem"
+                                            placeholder="e.x.lemmon" class="form-control"></label></div><button type="submit"
+                                    class="btn btn-primary">Add Fruit</button>
+                            </form>
+                        </div>
+                        <!-- 컴포넌트로 만들 영역 : 종료 -->
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<!-- react 플러그인 include   -->
+<!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
+
+
+
