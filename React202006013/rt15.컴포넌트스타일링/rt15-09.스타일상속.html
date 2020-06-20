@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>react 번개 카운터</title>
+
+    <link rel="stylesheet" href="../css/reset.css" />
+    <style>
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <xmp
+>
+        styled-component 방식에서 자주 사용되는 스타일 상속 방법을 실습을 통해 배운다.
+
+    </xmp>
+
+    <div id="app">
+      <div
+        style="
+          width: 250px;
+          background-color: black;
+          padding: 0px;
+          border-radius: 10px;
+          text-align: center;
+          margin: 0px;
+          font-family: sans-serif;
+          color: white;
+        "
+      >
+        <h1 style="color: rgb(102, 255, 255); font-size: 50px;">2700</h1>
+        <h2
+          style="
+            margin: 0px;
+            padding: 0px;
+            font-family: sans-serif;
+            color: white;
+          "
+        >
+          번개
+        </h2>
+        <h2
+          style="
+            font-size: 38px;
+            margin: 0px;
+            padding: 0px;
+            font-family: sans-serif;
+            color: white;
+          "
+        >
+          강조
+        </h2>
+        <p
+          style="
+            font-size: 17px;
+            opacity: 0.5;
+            margin: 0px;
+            padding: 0px;
+            font-family: sans-serif;
+            color: white;
+          "
+        >
+          since you loaded this example
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"
+>
+  /* import { React} from 'react'; */
+</script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js"
+>
+  /* import { ReactDOM } from 'react-dom'; */
+</script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"
+>
+  /* JSX를 자바스크립트로 변환 */
+</script>
+<script type="text/babel">
+  console.log(React);
+  console.log(React.Component);
+  console.log(ReactDOM);
+
+  class StyleInherit extends React.Component {
+    styleCommon = {
+      margin: "0px",
+      padding: "0px",
+      fontFamily: "sans-serif",
+      color: "white",
+    };
+    styleDiv = {
+      width: "250px",
+      backgroundColor: "black",
+      padding: "0px",
+      borderRadius: "10px",
+      textAlign: "center",
+      margin: "0px",
+      fontFamily: "sans-serif",
+      color: "white",
+    };
+    styleH1 = {
+      color: "rgb(102, 255, 255)",
+      fontSize: "50px",
+    };
+    styleEephasis = {
+      ...this.styleCommon,
+      fontSize: "38px", //겹치는경우 밑에 있는게 우선 ex)styleCommon에 폰트사이즈가 있는경우
+    };
+    styleSmall = {
+      fontSize: "17px",
+      opacity: "0.5",
+      ...this.styleCommon,
+    };
+    render() {
+      return (
+        <div style={this.styleDiv}>
+          <h1 style={this.styleH1}>2700</h1>
+          <h2 style={this.styleCommon}>번개</h2>
+          <h2 style={this.styleEephasis}>강조</h2>
+          <p style={this.styleSmall}>since you loaded this example</p>
+        </div>
+      );
+    }
+  }
+  ReactDOM.render(
+    <StyleInherit></StyleInherit>,
+    document.getElementById("app")
+  );
+</script>

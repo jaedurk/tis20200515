@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -9,18 +9,19 @@
     <link rel="stylesheet" href="../css/reset.css" />
 
     <style>
-        .success {
-            background-color: green;
-        }
+      .success {
+        background-color: green;
+      }
 
-        .failure {
-            background-color: red;
-        }
+      .failure {
+        background-color: red;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-    <xmp>
+  <body>
+    <xmp
+>
 
         change 이벤트 예제를 실습하여 본다.
 
@@ -38,11 +39,71 @@
     </xmp>
 
     <div id="app"></div>
-</body>
+  </body>
 </html>
 
 <!-- react 플러그인 include   -->
 <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"
+>
+  /* import { React} from 'react'; */
+</script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js"
+>
+  /* import { ReactDOM } from 'react-dom'; */
+</script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"
+>
+  /* JSX를 자바스크립트로 변환 */
+</script>
+<script type="text/babel">
+  console.log(React);
+  console.log(React.Component);
+  console.log(ReactDOM);
+  class CompInput extends React.Component {
+    state = {
+      password: "",
+      classname: "",
+    };
+    constructor(props) {
+      super(props);
+      //this bind 설정
+      this.handlerChange = this.handlerChange.bind(this);
+    }
+    handlerChange(e) {
+      //이벤트 핸들러는 constructor에서 this를 bind 해야한다.
+      console.log(e.target.name, e.target.value);
 
+      //state 값을 변경하려면 무엇을 사용해야 할까요?
+      // 힌트. Vue.set()관 같은 역할을 하는 것이다.
+      this.setState({
+        password: e.target.value,
+        classname: this.validate(e.target.value),
+      });
+    }
+    validate(params) {
+      var classname = "";
+      if (params === "0000") {
+        classname = "success";
+      } else {
+        classname = "failure";
+      }
+      return classname;
+    }
+    render() {
+      return (
+        <input
+          type="password"
+          name="password"
+          className={this.state.classname}
+          onChange={this.handlerChange}
+        />
+      );
+    }
+  }
 
-
+  ReactDOM.render(<CompInput></CompInput>, document.getElementById("app"));
+</script>

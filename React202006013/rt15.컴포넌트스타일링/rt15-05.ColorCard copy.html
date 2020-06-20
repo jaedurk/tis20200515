@@ -90,75 +90,30 @@
   console.log(React.Component);
   console.log(ReactDOM);
 
-  class Label extends React.Component {
-    /* .label {
-      font-family: sans-serif;
-      font-weight: bold;
-      padding: 13px;
-      margin: 0;
-      text-align: center;
-    } */
-
-    //필드 : styleLabel 선언
-    styleLabel = {
-      fontFamily: "sans-serif",
-      fontWeight: "bold",
-      padding: "13px",
-      margin: "0",
-      textAlign: "center",
-    };
+  class App extends React.Component {
     render() {
-      return <div style={this.styleLabel}>{this.props.color}</div>;
-    }
-  }
-  class Square extends React.Component {
-    /*
-    .square {
-
-      }height: 150px;
-        background-color: #ff6663;
-      */
-    styleSquare = {
-      height: "150px",
-      backgroundColor: this.props.color,
-    };
-    render() {
-      return <div style={this.styleSquare}>&nbsp;</div>;
-    }
-  }
-  class Card extends React.Component {
-    /* .card {
-        display: inline-block;
-        height: 200px;
-        width: 150px;
-        padding: 0;
-        margin: 10px;
-        background-color: #ffffff;
-        webkit-filter: drop-shadow(0px 0px 5px #666666);
-        filter: drop-shadow(0px 0px 5px #666666);
-      } */
-    styleCard = {
-      display: "inline-block",
-      height: "200px",
-      width: "150px",
-      padding: "0",
-      margin: "10px",
-      backgroundColor: "#ffffff",
-      filter: "drop-shadow(0px 0px 5px #666666)",
-    };
-    render() {
+      var styleCard = {
+        display: "inline-block",
+        height: "200px",
+        width: "150px",
+        padding: "0",
+        margin: "10px",
+        backgroundColor: "#ffffff",
+        webkitFilter: "drop-shadow(0px 0px 5px #666666)",
+        filter: "drop-shadow(0px 0px 5px #666666)",
+      };
       return (
-        <div style={this.styleCard} {...this.props}>
-          <Square {...this.props}></Square>
-          <Label {...this.props}></Label>
+        <div style="styleCard">
+          <div className="square"></div>
+          <div className="label"></div>
         </div>
       );
     }
   }
   ReactDOM.render(
     <div>
-      <Card color="#ff6663"></Card>
-      <Card color="#ffa737"></Card>
+      <App></App>
+      <App></App>
     </div>,
     document.getElementById("app")
   );

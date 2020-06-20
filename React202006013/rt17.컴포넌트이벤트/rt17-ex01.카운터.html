@@ -1,43 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
 
-    <link rel="stylesheet" href="../css/reset.css"/>
+    <link rel="stylesheet" href="../css/reset.css" />
     <style>
-
-    .styleBackground {
-        padding: 50px ;
-        background-color : #ffc53a ;
-        width : 250px ;
-        height : 100px ;
-        border-radius : 10px ;
-        text-align :  center
-    }
-    .styleButton {
-        font-size : 1em ;
-        width : 30px ;
-        height : 30px ;
-        font-family : sans-serif ;
-        color : #333333 ;
-        font-weight : bold ;
-        line-height : 3px
-    }
-    .styleText {
-        font-size : 72px ;
-        font-family : sans-serif ;
-        color : #333333 ;
-        font-weight : bold ;
-    }
+      .styleBackground {
+        padding: 50px;
+        background-color: #ffc53a;
+        width: 250px;
+        height: 100px;
+        border-radius: 10px;
+        text-align: center;
+      }
+      .styleButton {
+        font-size: 1em;
+        width: 30px;
+        height: 30px;
+        font-family: sans-serif;
+        color: #333333;
+        font-weight: bold;
+        line-height: 3px;
+      }
+      .styleText {
+        font-size: 72px;
+        font-family: sans-serif;
+        color: #333333;
+        font-weight: bold;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-    <xmp>
+  <body>
+    <xmp
+>
         '+' 버튼 클릭하면 1씩 증가
         shift 키 와 '+' 버튼 클릭하면 10씩 증가
 
@@ -47,22 +46,115 @@
            class 속성 말고 style 속성을 사용하여 작성.
 
     </xmp>
-	<hr>
+    <hr />
 
     <div id="app">
-        <div class="styleBackground">
-            <div class="styleText">
-                4
-            </div>
-            <button class="styleButton">+</button>
+      <div class="styleBackground">
+        <div class="styleText">
+          4
         </div>
+        <button class="styleButton">+</button>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
 
 <!-- react 플러그인 include   -->
 <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"
+>
+  /* import { React} from 'react'; */
+</script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js"
+>
+  /* import { ReactDOM } from 'react-dom'; */
+</script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"
+>
+  /* JSX를 자바스크립트로 변환 */
+</script>
+<script type="text/babel">
+  console.log(React);
+  console.log(React.Component);
+  console.log(ReactDOM);
 
+  class CounterLabel extends React.Component {
+    /* .styleText {
+        font-size: 72px;
+        font-family: sans-serif;
+        color: #333333;
+        font-weight: bold;
+      } */
+    styleText = {
+      fontSize: "72px",
+      fontFamily: "sans-serif",
+      color: "#333333",
+      fontWeight: "bold",
+    };
+    render() {
+      return <div style={this.styleText}>{this.props.count}</div>;
+    }
+  }
+  class CounterContainer extends React.Component {
+    state = {
+      count: 0,
+    };
 
-
+    styleBackground = {
+      padding: "50px",
+      backgroundColor: "#ffc53a",
+      width: "250px",
+      height: "100px",
+      borderRadius: "10px",
+      textAlign: "center",
+    };
+    styleButton = {
+      fontSize: "1em",
+      width: "30px",
+      height: "30px",
+      fontFamily: "sans-serif",
+      color: "#333333",
+      fontWeight: "bold",
+      lineHeight: "3px",
+    };
+
+    constructor(props) {
+      super(props);
+
+      // this bind 처리
+      this.increase = this.increase.bind(this);
+    }
+    increase(e) {
+      //이벤트 핸들러는 contructor에서 this bind 처리한다.
+      var currentCount = this.state.count;
+      if (e.shiftKey) {
+        currentCount = Number(currentCount) + 10; // currentCount가 문자열로 바뀔 수 있다.
+      } else {
+        currentCount = Number(currentCount) + 1; // currentCount가 문자열로 바뀔 수 있다.
+      }
+
+      //state 값 바꾸기
+      this.setState({
+        count: currentCount,
+      });
+    }
+    render() {
+      return (
+        <div style={this.styleBackground}>
+          <CounterLabel count={this.state.count}></CounterLabel>
+          <button style={this.styleButton} onClick={this.increase}>
+            +
+          </button>
+        </div>
+      );
+    }
+  }
+
+  ReactDOM.render(
+    <CounterContainer></CounterContainer>,
+    document.getElementById("app")
+  );
+</script>
